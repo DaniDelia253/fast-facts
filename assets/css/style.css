@@ -9,3 +9,44 @@ a {
   color: turquoise;
   text-decoration: none;
 }
+
+.hide {
+  display: none;
+}
+
+#optionContainer,
+#factSection {
+  display: flex;
+  justify-content: center;
+}
+
+#factContainer {
+  padding-top: 30px;
+
+  display: flex;
+  flex-direction: column;
+  /* justify-content: flex-start; */
+  align-items: end;
+  border-bottom: 3px solid turquoise;
+}
+
+#bottomContainer {
+  display: flex;
+}
+
+textarea {
+  margin-top: 10px;
+  width: 45px;
+  height: 25px;
+  font-family: inherit;
+  font-size: inherit;
+  text-align: inherit;
+  padding-top: 4px;
+  border: 1.5px solid turquoise;
+  border-radius: 10px;
+  background-color: inherit;
+}
+
+footer {
+  padding-top: 30px;
+}
