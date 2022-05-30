@@ -2,6 +2,43 @@ const additionCheckbox = document.getElementById('addition')
 const subtractionCheckbox = document.getElementById('subtraction')
 const multiplicationCheckbox = document.getElementById('multiplication')
 const divisionCheckbox = document.getElementById('division')
+const additionUpperLimit = document.getElementById('additionUpperLimit')
+const subtractionUpperLimit = document.getElementById('subtractionUpperLimit')
+const multiplicationUpperLimit = document.getElementById('multiplicationUpperLimit')
+const divisionUpperLimit = document.getElementById('divisionUpperLimit')
+
+let additionMax = 1
+let subtractionMax = 1
+let multiplicationMax = 1
+let divisionMax = 1
+
+additionUpperLimit.addEventListener('input', function () {
+    additionMax = this.value
+    setBottomRow()
+})
+
+subtractionUpperLimit.addEventListener('input', function () {
+    subtractionMax = this.value
+    setBottomRow()
+
+})
+
+multiplicationUpperLimit.addEventListener('input', function () {
+    multiplicationMax = this.value
+    setBottomRow()
+
+})
+
+divisionUpperLimit.addEventListener('input', function () {
+    divisionMax = this.value
+    setBottomRow()
+
+})
+
+
+function getNum(max) {
+    return Math.floor(Math.random() * max) + 1;
+}
 
 const symbols = []
 
@@ -10,13 +47,12 @@ additionCheckbox.addEventListener('change', function () {
     additionInputs.classList.toggle('hide')
     if (additionCheckbox.checked === true) {
         symbols.push('+')
-        console.log('+')
-        console.log(symbols)
+
     } else {
         symbols.splice(symbols.indexOf('+'), 1)
-        console.log(' removed +')
-        console.log(symbols)
+
     }
+    setBottomRow()
 })
 
 subtractionCheckbox.addEventListener('change', function () {
@@ -24,13 +60,13 @@ subtractionCheckbox.addEventListener('change', function () {
     subtractionInputs.classList.toggle('hide')
     if (subtractionCheckbox.checked === true) {
         symbols.push('-')
-        console.log('-')
-        console.log(symbols)
+
     } else {
         symbols.splice(symbols.indexOf('-'), 1)
-        console.log(' removed -')
-        console.log(symbols)
+
     }
+    setBottomRow()
+
 })
 
 multiplicationCheckbox.addEventListener('change', function () {
@@ -38,13 +74,13 @@ multiplicationCheckbox.addEventListener('change', function () {
     multiplicationInputs.classList.toggle('hide')
     if (multiplicationCheckbox.checked === true) {
         symbols.push('x')
-        console.log('x')
-        console.log(symbols)
+
     } else {
         symbols.splice(symbols.indexOf('x'), 1)
-        console.log(' removed x')
-        console.log(symbols)
+
     }
+    setBottomRow()
+
 })
 
 divisionCheckbox.addEventListener('change', function () {
@@ -52,11 +88,41 @@ divisionCheckbox.addEventListener('change', function () {
     divisionInputs.classList.toggle('hide')
     if (divisionCheckbox.checked === true) {
         symbols.push('÷')
-        console.log('÷')
-        console.log(symbols)
+
     } else {
         symbols.splice(symbols.indexOf('÷'), 1)
-        console.log('removed ÷')
-        console.log(symbols)
+
     }
+    setBottomRow()
+
 })
+
+function setTopNum() {
+    document.getElementById('topDigitText').innerHTML = getNum(12)
+    document.getElementById('bottomDigitText').innerHTML = 'select your options to get started!'
+
+}
+
+function setBottomRow() {
+    let currentSymbolIndex = getNum(symbols.length) - 1
+    let currentSymbol = symbols[currentSymbolIndex]
+    document.getElementById('signText').innerHTML = currentSymbol
+    switch (currentSymbol) {
+        case '+':
+            document.getElementById('bottomDigitText').innerHTML = getNum(additionMax)
+            break;
+        case '-':
+            document.getElementById('bottomDigitText').innerHTML = getNum(subtractionMax)
+            break;
+        case 'x':
+            document.getElementById('bottomDigitText').innerHTML = getNum(multiplicationMax)
+            break;
+        case '÷':
+            document.getElementById('bottomDigitText').innerHTML = getNum(divisionMax)
+
+            break;
+    }
+}
+
+setTopNum()
+setBottomRow()
