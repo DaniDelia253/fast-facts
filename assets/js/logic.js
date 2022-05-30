@@ -7,6 +7,8 @@ const subtractionUpperLimit = document.getElementById('subtractionUpperLimit')
 const multiplicationUpperLimit = document.getElementById('multiplicationUpperLimit')
 const divisionUpperLimit = document.getElementById('divisionUpperLimit')
 
+const symbols = []
+
 let additionMax = 1
 let subtractionMax = 1
 let multiplicationMax = 1
@@ -40,7 +42,6 @@ function getNum(max) {
     return Math.floor(Math.random() * max) + 1;
 }
 
-const symbols = []
 
 additionCheckbox.addEventListener('change', function () {
     const additionInputs = document.getElementById('additionInputs')
@@ -104,23 +105,27 @@ function setTopNum() {
 }
 
 function setBottomRow() {
-    let currentSymbolIndex = getNum(symbols.length) - 1
-    let currentSymbol = symbols[currentSymbolIndex]
-    document.getElementById('signText').innerHTML = currentSymbol
-    switch (currentSymbol) {
-        case '+':
-            document.getElementById('bottomDigitText').innerHTML = getNum(additionMax)
-            break;
-        case '-':
-            document.getElementById('bottomDigitText').innerHTML = getNum(subtractionMax)
-            break;
-        case 'x':
-            document.getElementById('bottomDigitText').innerHTML = getNum(multiplicationMax)
-            break;
-        case '÷':
-            document.getElementById('bottomDigitText').innerHTML = getNum(divisionMax)
+    if (symbols.length === 0) {
+        document.getElementById('signText').innerHTML = ""
+    } else {
+        let currentSymbolIndex = getNum(symbols.length) - 1
+        let currentSymbol = symbols[currentSymbolIndex]
+        document.getElementById('signText').innerHTML = currentSymbol
+        switch (currentSymbol) {
+            case '+':
+                document.getElementById('bottomDigitText').innerHTML = getNum(additionMax)
+                break;
+            case '-':
+                document.getElementById('bottomDigitText').innerHTML = getNum(subtractionMax)
+                break;
+            case 'x':
+                document.getElementById('bottomDigitText').innerHTML = getNum(multiplicationMax)
+                break;
+            case '÷':
+                document.getElementById('bottomDigitText').innerHTML = getNum(divisionMax)
 
-            break;
+                break;
+        }
     }
 }
 
