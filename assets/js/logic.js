@@ -100,13 +100,13 @@ divisionCheckbox.addEventListener('change', function () {
 
 function setTopNum() {
     document.getElementById('topDigitText').innerHTML = getNum(12)
-    document.getElementById('bottomDigitText').innerHTML = 'select your options to get started!'
 
 }
 
 function setBottomRow() {
     if (symbols.length === 0) {
         document.getElementById('signText').innerHTML = ""
+        document.getElementById('bottomDigitText').innerHTML = 'select your options to get started!'
     } else {
         let currentSymbolIndex = getNum(symbols.length) - 1
         let currentSymbol = symbols[currentSymbolIndex]
