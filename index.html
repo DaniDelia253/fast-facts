@@ -18,7 +18,8 @@
                     <label for="addition">Addition</label>
                     <div id='additionInputs' class="hide">
                         Include addition fact families up to:
-                        <input type="number" style="width:14%" id="additionUpperLimit" />
+                        <input type="text" maxlength="3" oninput="this.value=this.value.replace(/[^0-9]/g,'');"
+                            style="width:14%" id="additionUpperLimit" />
                     </div>
                 </div>
                 <div class="signSelectorContainer">
@@ -26,7 +27,8 @@
                     <label for="subtraction">Subtraction</label>
                     <div id='subtractionInputs' class="hide">
                         Include subtraction fact families up to:
-                        <input type="number" style="width:14%" id="subtractionUpperLimit" />
+                        <input type="text" maxlength="3" oninput="this.value=this.value.replace(/[^0-9]/g,'');"
+                            style="width:14%" id="subtractionUpperLimit" />
                     </div>
                 </div>
                 <div class="signSelectorContainer">
@@ -34,7 +36,8 @@
                     <label for="multiplication">Multiplication</label>
                     <div id='multiplicationInputs' class="hide">
                         Include multiplication fact families up to:
-                        <input type="number" style="width:14%" id="multiplicationUpperLimit" />
+                        <input type="text" maxlength="3" oninput="this.value=this.value.replace(/[^0-9]/g,'');"
+                            style="width:14%" id="multiplicationUpperLimit" />
                     </div>
                 </div>
                 <div class="signSelectorContainer">
@@ -42,7 +45,8 @@
                     <label for="division">Division</label>
                     <div id='divisionInputs' class="hide">
                         Include division fact families up to:
-                        <input type="number" style="width:14%" id="divisionUpperLimit" />
+                        <input type="text" maxlength="3" oninput="this.value=this.value.replace(/[^0-9]/g,'');"
+                            style="width:14%" id="divisionUpperLimit" />
                     </div>
                 </div>
             </div>

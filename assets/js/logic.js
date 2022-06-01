@@ -116,7 +116,16 @@ function setBottomRow() {
                 document.getElementById('bottomDigitText').innerHTML = getNum(additionMax)
                 break;
             case '-':
-                document.getElementById('bottomDigitText').innerHTML = getNum(subtractionMax)
+                subtractThisNum = 0
+                getNumToSubt()
+                function getNumToSubt() {
+                    subtractThisNum = getNum(subtractionMax)
+                    if (subtractThisNum > parseFloat(document.getElementById('topDigitText').innerHTML)) {
+                        getNumToSubt()
+                    }
+                    return subtractThisNum
+                }
+                document.getElementById('bottomDigitText').innerHTML = subtractThisNum
                 break;
             case 'x':
                 document.getElementById('bottomDigitText').innerHTML = getNum(multiplicationMax)
@@ -126,6 +135,34 @@ function setBottomRow() {
 
                 break;
         }
+        calculateCorrectAnswer(currentSymbol)
+    }
+}
+
+function calculateCorrectAnswer(currentSymbol) {
+    let firstNum = ''
+    let secondNum = ''
+    let correctAns = ''
+    switch (currentSymbol) {
+        case '+':
+            firstNum = document.getElementById('topDigitText').innerHTML
+            secondNum = document.getElementById('bottomDigitText').innerHTML
+            correctAns = parseFloat(firstNum) + parseFloat(secondNum)
+            console.log(correctAns)
+            break;
+        case '-':
+            firstNum = document.getElementById('topDigitText').innerHTML
+            secondNum = document.getElementById('bottomDigitText').innerHTML
+            correctAns = parseFloat(firstNum) - parseFloat(secondNum)
+            console.log(correctAns)
+            break;
+        case 'x':
+            document.getElementById('bottomDigitText').innerHTML = getNum(multiplicationMax)
+            break;
+        case '÷':
+            document.getElementById('bottomDigitText').innerHTML = getNum(divisionMax)
+
+            break;
     }
 }
 
