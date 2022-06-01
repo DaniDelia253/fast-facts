@@ -19,7 +19,7 @@
                     <div id='additionInputs' class="hide">
                         Include addition fact families up to:
                         <input type="text" maxlength="3" oninput="this.value=this.value.replace(/[^0-9]/g,'');"
-                            style="width:14%" id="additionUpperLimit" />
+                            style="width:14%" id="additionUpperLimit" inputmode="numeric" />
                     </div>
                 </div>
                 <div class="signSelectorContainer">
@@ -28,7 +28,7 @@
                     <div id='subtractionInputs' class="hide">
                         Include subtraction fact families up to:
                         <input type="text" maxlength="3" oninput="this.value=this.value.replace(/[^0-9]/g,'');"
-                            style="width:14%" id="subtractionUpperLimit" />
+                            style="width:14%" id="subtractionUpperLimit" inputmode="numeric" />
                     </div>
                 </div>
                 <div class="signSelectorContainer">
@@ -37,7 +37,7 @@
                     <div id='multiplicationInputs' class="hide">
                         Include multiplication fact families up to:
                         <input type="text" maxlength="3" oninput="this.value=this.value.replace(/[^0-9]/g,'');"
-                            style="width:14%" id="multiplicationUpperLimit" />
+                            style="width:14%" id="multiplicationUpperLimit" inputmode="numeric" />
                     </div>
                 </div>
                 <div class="signSelectorContainer">
@@ -46,7 +46,7 @@
                     <div id='divisionInputs' class="hide">
                         Include division fact families up to:
                         <input type="text" maxlength="2" oninput="this.value=this.value.replace(/[^0-9]/g,'');"
-                            style="width:14%" id="divisionUpperLimit" />
+                            style="width:14%" id="divisionUpperLimit" inputmode="numeric" />
                     </div>
                 </div>
             </div>
@@ -71,7 +71,7 @@
         <br>
     </div>
     <form id="form">
-        <textarea oninput="validateValue(event)" id="usermsg"></textarea>
+        <textarea inputmode="numeric" oninput="validateValue(event)" id="usermsg"></textarea>
     </form>
     <footer>
         Created with 🤍 by <a title=" visit my github :) " href='https://github.com/DaniDelia253'
