@@ -8,6 +8,7 @@ const multiplicationUpperLimit = document.getElementById('multiplicationUpperLim
 const divisionUpperLimit = document.getElementById('divisionUpperLimit')
 
 const symbols = []
+let submittedAns = ''
 let correctAns = ''
 
 let additionMax = 1
@@ -15,6 +16,7 @@ let subtractionMax = 1
 let multiplicationMax = 1
 let divisionMax = 1
 
+//onlt allow numbers to be entered into the textarea
 function validateValue(event) {
     const elem = event.target;
     const value = elem.value;
@@ -22,8 +24,10 @@ function validateValue(event) {
     elem.value = numVal;
 }
 
+//submit textarea when the enter key is pressed
 function submitOnEnter(event) {
     if (event.which === 13) {
+        submittedAns = event.target.value
         event.target.form.dispatchEvent(new Event("submit", { cancelable: true }));
         event.target.value = "";
         event.preventDefault(); // Prevents the addition of a new line in the text field (not needed in a lot of cases)
@@ -32,7 +36,8 @@ function submitOnEnter(event) {
 document.getElementById("usermsg").addEventListener("keypress", submitOnEnter);
 document.getElementById("form").addEventListener("submit", (event) => {
     event.preventDefault();
-    console.log("form submitted");
+    console.log('submitted ans: ' + submittedAns + '...  actual ans: ' + correctAns);
+    verifyAndReload()
 });
 
 additionUpperLimit.addEventListener('input', function () {
@@ -184,6 +189,17 @@ function calculateCorrectAnswer(currentSymbol) {
             document.getElementById('bottomDigitText').innerHTML = getNum(divisionMax)
 
             break;
+    }
+}
+
+function verifyAndReload() {
+    if (parseFloat(submittedAns) === parseFloat(correctAns)) {
+        console.log('RIGHT!!!!')
+        setBottomRow()
+        return
+    } else {
+        console.log('WRONG!!!!')
+        return
     }
 }
 
