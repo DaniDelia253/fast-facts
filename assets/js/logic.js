@@ -36,7 +36,6 @@ function submitOnEnter(event) {
 document.getElementById("usermsg").addEventListener("keypress", submitOnEnter);
 document.getElementById("form").addEventListener("submit", (event) => {
     event.preventDefault();
-    console.log('submitted ans: ' + submittedAns + '...  actual ans: ' + correctAns);
     verifyAndReload()
 });
 
@@ -158,8 +157,12 @@ function setBottomRow() {
                 document.getElementById('bottomDigitText').innerHTML = getNum(multiplicationMax)
                 break;
             case '÷':
-                document.getElementById('bottomDigitText').innerHTML = getNum(divisionMax)
-
+                //set the bottom number to 1-12
+                let newBottomNum = getNum(12)
+                document.getElementById('bottomDigitText').innerHTML = newBottomNum
+                //set the top number to botttom num * a new num 1-12
+                let newTopNum = newBottomNum * (getNum(divisionMax))
+                document.getElementById('topDigitText').innerHTML = newTopNum
                 break;
         }
         calculateCorrectAnswer(currentSymbol)
@@ -174,31 +177,30 @@ function calculateCorrectAnswer(currentSymbol) {
             firstNum = document.getElementById('topDigitText').innerHTML
             secondNum = document.getElementById('bottomDigitText').innerHTML
             correctAns = parseFloat(firstNum) + parseFloat(secondNum)
-            console.log(correctAns)
             break;
         case '-':
             firstNum = document.getElementById('topDigitText').innerHTML
             secondNum = document.getElementById('bottomDigitText').innerHTML
             correctAns = parseFloat(firstNum) - parseFloat(secondNum)
-            console.log(correctAns)
             break;
         case 'x':
-            document.getElementById('bottomDigitText').innerHTML = getNum(multiplicationMax)
+            firstNum = document.getElementById('topDigitText').innerHTML
+            secondNum = document.getElementById('bottomDigitText').innerHTML
+            correctAns = parseFloat(firstNum) * parseFloat(secondNum)
             break;
         case '÷':
-            document.getElementById('bottomDigitText').innerHTML = getNum(divisionMax)
-
+            firstNum = document.getElementById('topDigitText').innerHTML
+            secondNum = document.getElementById('bottomDigitText').innerHTML
+            correctAns = parseFloat(firstNum) / parseFloat(secondNum)
             break;
     }
 }
 
 function verifyAndReload() {
     if (parseFloat(submittedAns) === parseFloat(correctAns)) {
-        console.log('RIGHT!!!!')
         setBottomRow()
         return
     } else {
-        console.log('WRONG!!!!')
         return
     }
 }
