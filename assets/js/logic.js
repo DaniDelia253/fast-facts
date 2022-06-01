@@ -8,11 +8,32 @@ const multiplicationUpperLimit = document.getElementById('multiplicationUpperLim
 const divisionUpperLimit = document.getElementById('divisionUpperLimit')
 
 const symbols = []
+let correctAns = ''
 
 let additionMax = 1
 let subtractionMax = 1
 let multiplicationMax = 1
 let divisionMax = 1
+
+function validateValue(event) {
+    const elem = event.target;
+    const value = elem.value;
+    const numVal = value.replace(/\D/, "");
+    elem.value = numVal;
+}
+
+function submitOnEnter(event) {
+    if (event.which === 13) {
+        event.target.form.dispatchEvent(new Event("submit", { cancelable: true }));
+        event.target.value = "";
+        event.preventDefault(); // Prevents the addition of a new line in the text field (not needed in a lot of cases)
+    }
+}
+document.getElementById("usermsg").addEventListener("keypress", submitOnEnter);
+document.getElementById("form").addEventListener("submit", (event) => {
+    event.preventDefault();
+    console.log("form submitted");
+});
 
 additionUpperLimit.addEventListener('input', function () {
     additionMax = this.value
@@ -108,6 +129,7 @@ function setBottomRow() {
         document.getElementById('signText').innerHTML = ""
         document.getElementById('bottomDigitText').innerHTML = 'select your options to get started!'
     } else {
+        setTopNum()
         let currentSymbolIndex = getNum(symbols.length) - 1
         let currentSymbol = symbols[currentSymbolIndex]
         document.getElementById('signText').innerHTML = currentSymbol
@@ -142,7 +164,6 @@ function setBottomRow() {
 function calculateCorrectAnswer(currentSymbol) {
     let firstNum = ''
     let secondNum = ''
-    let correctAns = ''
     switch (currentSymbol) {
         case '+':
             firstNum = document.getElementById('topDigitText').innerHTML
@@ -166,5 +187,4 @@ function calculateCorrectAnswer(currentSymbol) {
     }
 }
 
-setTopNum()
 setBottomRow()
