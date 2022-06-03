@@ -5,6 +5,12 @@ body {
   text-align: center;
 }
 
+#mainContent {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+}
+
 a {
   color: turquoise;
   text-decoration: none;
@@ -28,6 +34,17 @@ a {
   /* justify-content: flex-start; */
   align-items: end;
   border-bottom: 3px solid turquoise;
+}
+
+#topDigitText,
+#signText,
+#bottomDigitText {
+  margin: 3px;
+  font-size: 40px;
+}
+
+.smallerText {
+  font-size: 20px !important;
 }
 
 #bottomContainer {

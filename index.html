@@ -8,71 +8,107 @@
 </head>
 
 <body>
-    <header>
-        <h1 title=' practice makes progress! :) '>Fast Fact Practice</h1>
-        <p>What facts are we practicing?</p>
-        <div id="optionContainer">
-            <div id="checkboxContainer">
-                <div class="signSelectorContainer">
-                    <input type="checkbox" name="addition" id="addition" />
-                    <label for="addition">Addition</label>
-                    <div id='additionInputs' class="hide">
-                        Include addition fact families up to:
-                        <input type="text" maxlength="3" oninput="this.value=this.value.replace(/[^0-9]/g,'');"
-                            style="width:14%" id="additionUpperLimit" inputmode="numeric" />
+    <div id="mainContent">
+
+        <header>
+            <h1 title=' practice makes progress! :) '>Fast Fact Practice</h1>
+            <p>Choose your character:</p>
+            <div>
+                <form onchange="handleCharacterSubmission(event)">
+                    <label>
+                        <input type="radio" id="'robot" value="Robot" name="characterSelector" />
+                        Robot
+                    </label>
+                    <label>
+                        <input type="radio" id="'monster" value="monster" name="characterSelector" />
+                        Monster
+                    </label>
+                    <label>
+                        <input type="radio" id="'RoboHead" value="RoboHead" name="characterSelector" />
+                        RoboHead
+                    </label>
+                    <label>
+                        <input type="radio" id="'kitten" value="kitten" name="characterSelector" />
+                        Kitten
+                    </label>
+                    <label>
+                        <input type="radio" id="'human" value="human" name="characterSelector" />
+                        Human
+                    </label>
+                </form>
+            </div>
+            <p>What facts are we practicing?</p>
+            <div id="optionContainer">
+                <div id="checkboxContainer">
+                    <div class="signSelectorContainer">
+                        <input type="checkbox" name="addition" id="addition" />
+                        <label for="addition">Addition</label>
+                        <div id='additionInputs' class="hide">
+                            Include addition fact families up to:
+                            <input type="text" maxlength="3" oninput="this.value=this.value.replace(/[^0-9]/g,'');"
+                                style="width:14%" id="additionUpperLimit" inputmode="numeric" />
+                        </div>
                     </div>
-                </div>
-                <div class="signSelectorContainer">
-                    <input type="checkbox" name="subtraction" id="subtraction" />
-                    <label for="subtraction">Subtraction</label>
-                    <div id='subtractionInputs' class="hide">
-                        Include subtraction fact families up to:
-                        <input type="text" maxlength="3" oninput="this.value=this.value.replace(/[^0-9]/g,'');"
-                            style="width:14%" id="subtractionUpperLimit" inputmode="numeric" />
+                    <div class="signSelectorContainer">
+                        <input type="checkbox" name="subtraction" id="subtraction" />
+                        <label for="subtraction">Subtraction</label>
+                        <div id='subtractionInputs' class="hide">
+                            Include subtraction fact families up to:
+                            <input type="text" maxlength="3" oninput="this.value=this.value.replace(/[^0-9]/g,'');"
+                                style="width:14%" id="subtractionUpperLimit" inputmode="numeric" />
+                        </div>
                     </div>
-                </div>
-                <div class="signSelectorContainer">
-                    <input type="checkbox" name="multiplication" id="multiplication" />
-                    <label for="multiplication">Multiplication</label>
-                    <div id='multiplicationInputs' class="hide">
-                        Include multiplication fact families up to:
-                        <input type="text" maxlength="3" oninput="this.value=this.value.replace(/[^0-9]/g,'');"
-                            style="width:14%" id="multiplicationUpperLimit" inputmode="numeric" />
+                    <div class="signSelectorContainer">
+                        <input type="checkbox" name="multiplication" id="multiplication" />
+                        <label for="multiplication">Multiplication</label>
+                        <div id='multiplicationInputs' class="hide">
+                            Include multiplication fact families up to:
+                            <input type="text" maxlength="3" oninput="this.value=this.value.replace(/[^0-9]/g,'');"
+                                style="width:14%" id="multiplicationUpperLimit" inputmode="numeric" />
+                        </div>
                     </div>
-                </div>
-                <div class="signSelectorContainer">
-                    <input type="checkbox" name="division" id="division" />
-                    <label for="division">Division</label>
-                    <div id='divisionInputs' class="hide">
-                        Include division fact families up to:
-                        <input type="text" maxlength="2" oninput="this.value=this.value.replace(/[^0-9]/g,'');"
-                            style="width:14%" id="divisionUpperLimit" inputmode="numeric" />
+                    <div class="signSelectorContainer">
+                        <input type="checkbox" name="division" id="division" />
+                        <label for="division">Division</label>
+                        <div id='divisionInputs' class="hide">
+                            Include division fact families up to:
+                            <input type="text" maxlength="2" oninput="this.value=this.value.replace(/[^0-9]/g,'');"
+                                style="width:14%" id="divisionUpperLimit" inputmode="numeric" />
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
-    </header>
-    <div id="factSection">
-        <div id="factContainer">
-            <div id="topContainer">
-                <div id="topDigit">
-                    <p id="topDigitText"></p>
+        </header>
+        <section>
+            <div id="factSection">
+                <div id="factContainer">
+                    <div id="topContainer">
+                        <div id="topDigit">
+                            <p id="topDigitText"></p>
+                        </div>
+                    </div>
+                    <div id="bottomContainer">
+                        <div id="sign">
+                            <p id="signText"></p>
+                        </div>
+                        <div id="bottomDigit">
+                            <p id="bottomDigitText"></p>
+                        </div>
+                    </div>
+                </div>
+                <br>
+            </div>
+            <form id="form">
+                <textarea inputmode="numeric" oninput="validateValue(event)" id="usermsg"></textarea>
+            </form>
+            <div id="characterSection">
+                <div id="characterContainer">
+                    <div id="characterPic"></div>
+                    <div id="characterText"></div>
                 </div>
             </div>
-            <div id="bottomContainer">
-                <div id="sign">
-                    <p id="signText"></p>
-                </div>
-                <div id="bottomDigit">
-                    <p id="bottomDigitText"></p>
-                </div>
-            </div>
-        </div>
-        <br>
+        </section>
     </div>
-    <form id="form">
-        <textarea inputmode="numeric" oninput="validateValue(event)" id="usermsg"></textarea>
-    </form>
     <footer>
         Created with 🤍 by <a title=" visit my github :) " href='https://github.com/DaniDelia253'
             target="_blank">Dani</a>

@@ -8,6 +8,7 @@ const multiplicationUpperLimit = document.getElementById('multiplicationUpperLim
 const divisionUpperLimit = document.getElementById('divisionUpperLimit')
 
 const symbols = []
+let selectedCharacter = ''
 let submittedAns = ''
 let correctAns = ''
 
@@ -38,6 +39,12 @@ document.getElementById("form").addEventListener("submit", (event) => {
     event.preventDefault();
     verifyAndReload()
 });
+
+//when user selects character...
+function handleCharacterSubmission(event) {
+    selectedCharacter = event.target.value
+    console.log(selectedCharacter)
+}
 
 additionUpperLimit.addEventListener('input', function () {
     additionMax = this.value
@@ -132,7 +139,9 @@ function setBottomRow() {
     if (symbols.length === 0) {
         document.getElementById('signText').innerHTML = ""
         document.getElementById('bottomDigitText').innerHTML = 'select your options to get started!'
+        document.getElementById('bottomDigitText').classList.add('smallerText')
     } else {
+        document.getElementById('bottomDigitText').classList.remove('smallerText')
         setTopNum()
         let currentSymbolIndex = getNum(symbols.length) - 1
         let currentSymbol = symbols[currentSymbolIndex]
@@ -196,11 +205,62 @@ function calculateCorrectAnswer(currentSymbol) {
     }
 }
 
+function getCharacter() {
+    //later it might need to take global variable that determines what type of character
+    //fetch the character based on number that is inputted
+    let urlExtras = ''
+    switch (selectedCharacter) {
+        case 'monster':
+            urlExtras = '&set=set2'
+            break;
+        case 'RoboHead':
+            urlExtras = '&set=set3'
+            break;
+        case 'kitten':
+            urlExtras = '&set=set4'
+            break;
+        case 'human':
+            urlExtras = '&set=set5'
+            break;
+        default:
+            break
+    }
+    // slash# is robot
+    // slash#?set=set2 is monster
+    //slash#?set=set3 is roboheads
+    // slash#?set=set4 is kittens
+    // slash#?set=set5 is humans
+    // slash#?bgset=bg1 or slash#?bgset=bg2 is different backgrounds
+    // <img src="https://robohash.org/YOUR-TEXT.png"></img>
+    //display it in the right spot
+    let imgTag = `<img src="https://robohash.org/${submittedAns}.png?size=150x150${urlExtras}"></img>`
+    document.getElementById('characterText').innerHTML = imgTag
+}
+
+function correctCharacter() {
+    //call getCharacter
+    //for a certain amount of time...
+    //get the character that is displayed in the div and add the classes to make it go to the left
+    //add the text underneath
+}
+
+function incorrectCharacter() {
+    //call getCharacter
+    //for a certain amount of time...
+    //get the character that is displayed in the div and add the classes to make it go to the right
+    //add the text underneath
+}
+
 function verifyAndReload() {
     if (parseFloat(submittedAns) === parseFloat(correctAns)) {
+        //new function to display CORRECT ROBOT
+        getCharacter()
         setBottomRow()
         return
     } else {
+        //new function to display INCORRECT ROBOT
+        document.getElementById('characterText').innerHTML = "<img height='200' src='https://media1.giphy.com/media/CoND5j6Bn1QZUgm1xX/giphy.gif'></img>"
+
         return
     }
 }
