@@ -1,6 +1,6 @@
 body {
-  color: turquoise;
-  background-color: violet;
+  --main-text: black;
+  --main-bg: white;
   font-family: Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif;
   text-align: center;
 }
@@ -12,7 +12,7 @@ body {
 }
 
 a {
-  color: turquoise;
+  color: var(--main-text);
   text-decoration: none;
 }
 
@@ -33,7 +33,7 @@ a {
   flex-direction: column;
   /* justify-content: flex-start; */
   align-items: end;
-  border-bottom: 3px solid turquoise;
+  border-bottom: 3px solid var(--main-text);
 }
 
 #topDigitText,
@@ -59,7 +59,7 @@ textarea {
   font-size: inherit;
   text-align: inherit;
   padding-top: 4px;
-  border: 1.5px solid turquoise;
+  border: 1.5px solid var(--main-text);
   border-radius: 10px;
   background-color: inherit;
 }
